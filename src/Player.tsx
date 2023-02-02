@@ -2,8 +2,9 @@ import React from 'react';
 import shaka from 'shaka-player';
 
 class VideoPlayer extends React.PureComponent {
+	videoComponent: React.RefObject<HTMLVideoElement>;
 
-	constructor(props){
+	constructor(props: {} | Readonly<{}>){
 
 		super(props);
 
@@ -14,12 +15,12 @@ class VideoPlayer extends React.PureComponent {
 		this.onError = this.onError.bind(this);
 	}
 
-	onErrorEvent(event) {
+	onErrorEvent(event: { detail: any; }) {
 	  // Extract the shaka.util.Error object from the event.
 	  this.onError(event.detail);
 	}
 
-	onError(error) {
+	onError(error: { code: any; }) {
 	  // Log the error.
 	  console.error('Error code', error.code, 'object', error);
 	}
@@ -50,7 +51,7 @@ class VideoPlayer extends React.PureComponent {
 
 		return(
 				<video
-					style={{width: '100vw', height: '100vh', 'object-fit': 'cover', 'max-width': '100%', 'max-height': '100%'}}
+					style={{width: '100vw', height: '100vh', objectFit: 'cover', maxWidth: '100%', maxHeight: '100%'}}
 					ref={this.videoComponent}
 					poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
 					controls
